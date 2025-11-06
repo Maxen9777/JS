@@ -1,0 +1,39 @@
+@ -72,10 +72,14 @@ export function sortDishes(dishes){
+    return newArray;
+}
+
+/*export */ function menuPrice(dishesArray){
+ 
+// Callback-funktion som summerar priset för varje rätt
+function sumPriceCB(acc, dish) {
+    return acc + dish.pricePerServing;
+}
+export function menuPrice(dishesArray){
+    return dishesArray.reduce(sumPriceCB, 0); // använd reduce med startvärde 0
+    
+}
+
+/* 
+  This function is already implemented as it is more JavaScript + algorithms than interaction programming
+
+@ -84,7 +88,7 @@ export function sortDishes(dishes){
+   
+   As this is not an algorithm course, the function is mostly written but you have 2 callback passing TODOs.
+*/
+function shoppingList(dishes){
+export function shoppingList(dishes){
+    const result={}; // object used as mapping between ingredient ID and ingredient object
+
+    // we define the callback inside the function, though this is not strictly needed in this case. But see below.
+@ -114,9 +118,9 @@ function shoppingList(dishes){
+        }
+    }
+
+    const arrayOfIngredientArrays= dishes.map(/*TODO pass the callback that transforms a dish to its ingredients */);
+    const arrayOfIngredientArrays= dishes.map(keepJustIngredientsCB);
+    const allIngredients= arrayOfIngredientArrays.flat();    
+    allIngredients.forEach(/* TODO: pass the callback that treats an ingredient */);
+    allIngredients.forEach(ingredientCB);
+
+    // Note: the 3 lines above can be written as a function chain:
+    // dishes.map(callback1).flat().forEach(callback2);
